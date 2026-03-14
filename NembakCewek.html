@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Pesan Spesial Untuk Kamu ❤️</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    height:100vh;
+    overflow:hidden;
+    text-align:center;
+    color:white;
+}
+
+.container{
+    margin-top:120px;
+}
+
+button{
+    padding:15px 30px;
+    font-size:18px;
+    margin:10px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#yes{
+    background:#00ff9d;
+    color:black;
+}
+
+#no{
+    background:#ffffff;
+    color:black;
+    position:absolute;
+}
+
+#waBtn{
+    display:none;
+    background:#25D366;
+    color:white;
+}
+
+.heart{
+    position:fixed;
+    top:-10px;
+    font-size:20px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>Hai Kamu ❤️</h1>
+<h2>Maukah Kamu Jadi Pacarku?</h2>
+
+<button id="yes" onclick="accept()">Iya ❤️</button>
+<button id="no" onmouseover="moveButton()">Tidak</button>
+
+<br><br>
+
+<button id="waBtn" onclick="goWhatsApp()">Lanjut Chat di WhatsApp</button>
+
+<p id="message"></p>
+
+</div>
+
+<script>
+
+function moveButton(){
+    let btn=document.getElementById("no");
+    let x=Math.random()*window.innerWidth;
+    let y=Math.random()*window.innerHeight;
+
+    btn.style.left=x+"px";
+    btn.style.top=y+"px";
+}
+
+function accept(){
+    document.getElementById("message").innerHTML=
+    "Yeay! ❤️ Aku janji akan selalu berusaha membuat kamu bahagia.";
+
+    document.getElementById("waBtn").style.display="inline-block";
+}
+
+function goWhatsApp(){
+    let nomor="6285766600779"; // ganti nomor kamu
+    let pesan="Aku mau jadi pacar kamu";
+    let url="https://wa.me/"+nomor+"?text="+encodeURIComponent(pesan);
+
+    window.open(url,"_blank");
+}
+
+function createHeart(){
+    let heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(Math.random()*3+2)+"s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },5000);
+}
+
+setInterval(createHeart,300);
+
+</script>
+
+</body>
+</html>
